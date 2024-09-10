@@ -1,0 +1,5 @@
+# Re look into these questions
+
+45-Jump game 2- https://leetcode.com/problems/jump-game-ii/description/?envType=study-plan-v2&envId=top-interview-150  (MUST REVISE)
+55-Jump game - https://leetcode.com/problems/jump-game/description/?envType=study-plan-v2&envId=top-interview-150
+88-Merge sorted arrays - https://leetcode.com/problems/merge-sorted-array/description/?envType=study-plan-v2&envId=top-interview-150
