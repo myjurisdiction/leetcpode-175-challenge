@@ -5,7 +5,9 @@
  *  nums = [2,3,1,1,4]
  * nums = [3,2,1,0,4]
  */
-var canJump = function (nums) {
+const l = console.log;
+
+var canJumpBruteForceOptimised = function (nums) {
   const positions = new Array(nums.length).fill(null);
   const n = nums.length;
 
@@ -23,7 +25,7 @@ var canJump = function (nums) {
     }
 
     for (let j = 1; j <= nums[index]; j++) {
-      if (i + j < nums.length) {
+      if (index + j < nums.length) {
         const outcome = makeJump(index + j);
         if (outcome) {
           positions[index] = true;
@@ -36,9 +38,40 @@ var canJump = function (nums) {
     return positions[index];
   }
 
-  return makeJump(index);
+  return makeJump();
 };
 
-l(canJump([2, 3, 1, 1, 4]));
+l(canJumpBruteForceOptimised([2, 3, 1, 1, 4]));
 
-l(canJump([3, 2, 1, 0, 4]));
+l(canJumpBruteForceOptimised([3, 2, 1, 0, 4]));
+
+/**
+ * A Greedy Algorithm. O(n)
+ *  let's take this ex : [2, 3, 1, 1, 4]
+ *
+ * 1. we store the final destination which is the last element's index position.
+ *    let goalPost = n - 1;
+ * 2. we start with index n - 2. and go backwards. (will use loop for this)
+ *    2.1. Along the way we check if nums[index] + index >= goalPost.
+ *    2.2. If true, we reduce the golaPost by assigning it the current index. If not, we continue.
+ *    2.3. We repeat
+ * 3. we return True if golePost = 0, else, return False
+ *
+ */
+
+function canJumpOptimised(nums) {
+  const n = nums.length;
+  let gp = n - 1;
+
+  for (let i = n - 2; i >= 0; i--) {
+    if (nums[i] + i >= gp) {
+      gp = i;
+    }
+  }
+
+  return gp === 0 ? true : false;
+}
+
+l(canJumpOptimised([2, 3, 1, 1, 4]));
+
+l(canJumpOptimised([3, 2, 1, 0, 4]));
